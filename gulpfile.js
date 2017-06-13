@@ -21,7 +21,11 @@ gulp.task('uglify', function(){
 				   compress: true
 				}))
 			   .pipe(gulp.dest('build'));
-})
+});
+
+gulp.task('clean', function(){
+	
+});
 gulp.task('default', function(){
 	gulp.watch('js/*.js', ['uglify']);
 });
