@@ -37,5 +37,18 @@ gulp.task('watch', ()=>{
 });
 
 gulp.task('default', ()=>{
+	/*
+        // This will run in this order: 
+        // * build-clean 
+        // * build-scripts and build-styles in parallel 
+        // * build-html 
+        // * Finally call the callback function 
+        gulp.task('build', function(callback) {
+          runSequence('build-clean',
+                      ['build-scripts', 'build-styles'],
+                      'build-html',
+                      callback);
+        });
+	 */
 	runSequence('clean', 'uglify', 'watch');
 });
