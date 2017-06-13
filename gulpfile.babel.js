@@ -4,6 +4,7 @@ import gulp from 'gulp';
 import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
 import clean from 'gulp-clean';
+import runSequence from 'run-sequence';
 
 gulp.task('uglify', ()=>{
 	return gulp.src('./js/*.js')
@@ -30,6 +31,11 @@ gulp.task('clean', ()=>{
 	return gulp.src('build')
 			   .pipe(clean());
 });
-gulp.task('default', ['clean'], ()=>{
-	gulp.watch('js/*.js', ['uglify']);
+
+gulp.task('watch', ()=>{
+	gulp.watch(['js/*.js'], ['uglify']);
+});
+
+gulp.task('default', ()=>{
+	runSequence('clean', 'uglify', 'watch');
 });
