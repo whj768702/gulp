@@ -1,8 +1,11 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
+'use strict';
 
-gulp.task('uglify', function(){
+import gulp from 'gulp';
+import uglify from 'gulp-uglify';
+import concat from 'gulp-concat';
+import clean from 'gulp-clean';
+
+gulp.task('uglify', ()=>{
 	return gulp.src('./js/*.js')
 			   .pipe(concat('main.js'))
 			   .pipe(uglify({
@@ -23,9 +26,10 @@ gulp.task('uglify', function(){
 			   .pipe(gulp.dest('build'));
 });
 
-gulp.task('clean', function(){
-	
+gulp.task('clean', ()=>{
+	return gulp.src('build')
+			   .pipe(clean());
 });
-gulp.task('default', function(){
+gulp.task('default', ['clean'], ()=>{
 	gulp.watch('js/*.js', ['uglify']);
 });
